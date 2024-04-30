@@ -2,9 +2,9 @@
 
 <launch>
 
-  <arg name="model" default="$(find ros_chess)/urdf/chess_arm.xacro"/>
+  <arg name="model" default="$(find ros_chess)/urdf/chess_robot.xacro"/>
   <arg name="gui" default="true" />
-  <arg name="rvizconfig" default="$(find ros_chess)/rviz/chess_arm.rviz" />
+  <arg name="rvizconfig" default="$(find ros_chess)/rviz/chess_robot.rviz" />
 
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
   <param name="use_gui" value="$(arg gui)"/>

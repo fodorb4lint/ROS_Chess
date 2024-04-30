@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-
-<launch>
-  <!-- Start another launchfile -->
-  <include file="$(find ros_chess)/launch/publisher.launch"/>
-  <!-- Start a single subscriber node -->
-  <node name="subscriber" pkg="ros_chess" type="subscriber" output ="screen"/>
-</launch>

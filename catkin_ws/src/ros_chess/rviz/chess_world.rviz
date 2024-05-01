@@ -63,21 +63,46 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        base_footprint:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_wheel:
+        forearm_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_wheel:
+        gripper_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        shoulder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        upper_arm_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        world:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wrist_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -95,15 +120,23 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        base_footprint:
-          Value: true
         base_link:
           Value: true
-        left_wheel:
+        forearm_link:
           Value: true
-        odom:
+        gripper_base_link:
           Value: true
-        right_wheel:
+        left_finger:
+          Value: true
+        right_finger:
+          Value: true
+        shoulder_link:
+          Value: true
+        upper_arm_link:
+          Value: true
+        world:
+          Value: true
+        wrist_link:
           Value: true
       Marker Alpha: 1
       Marker Scale: 0.5
@@ -112,13 +145,17 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        odom:
-          base_footprint:
-            base_link:
-              left_wheel:
-                {}
-              right_wheel:
-                {}
+        world:
+          base_link:
+            shoulder_link:
+              upper_arm_link:
+                forearm_link:
+                  wrist_link:
+                    gripper_base_link:
+                      left_finger:
+                        {}
+                      right_finger:
+                        {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -173,7 +210,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 5.639177322387695
+      Distance: 8.619640350341797
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -209,5 +246,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1216
-  X: 1987
-  Y: 675
+  X: 2061
+  Y: 88

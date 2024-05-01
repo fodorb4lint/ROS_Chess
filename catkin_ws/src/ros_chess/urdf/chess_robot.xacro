@@ -2,6 +2,14 @@
 
 <robot name="chess_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <!-- RViz colors -->
+  <xacro:include filename="$(find ros_chess)/urdf/materials.xacro" /> 
+  <!-- Transmisions -->
+  <xacro:include filename="$(find ros_chess)/urdf/transmission.xacro" />
+  <!-- Gazebo plugin -->
+  <xacro:include filename="$(find ros_chess)/urdf/chess_robot.gazebo" />
+
+
    <!-- Global reference link -->
   <link name="world"/>
   
@@ -40,8 +48,8 @@
   </gazebo>
 
   <!-- Shoulder pan joint -->
-  <joint name="1shoulder_pan_joint" type="revolute">
-    <limit lower="-3.14" upper="3.14" effort="100.0" velocity="3.14"/>
+  <joint name="J1_shoulder_pan_joint" type="revolute">
+    <limit lower="-3.14" upper="3.14" effort="1000" velocity="3.14"/>
     <parent link="base_link"/>
     <child link="shoulder_link"/>
     <axis xyz="0 0 1"/>
@@ -84,8 +92,8 @@
 
 
   <!-- Shoulder lift joint -->
-  <joint name="2shoulder_lift_joint" type="revolute">
-    <limit lower="-1.5708" upper="1.5708" effort="100" velocity="3.14"/>
+  <joint name="J2_shoulder_lift_joint" type="revolute">
+    <limit lower="-1.5708" upper="1.5708" effort="500" velocity="3.14"/>
     <parent link="shoulder_link"/>
     <child link="upper_arm_link"/>
     <axis xyz="0 1 0"/>
@@ -106,16 +114,16 @@
     </inertial>
     <collision>
       <geometry>
-        <cylinder radius="0.1" length="1"/>
+        <cylinder radius="0.1" length="1.5"/>
       </geometry>
-      <origin xyz="0.0 0.0 0.5" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0.0 0.0 0.75" rpy="0.0 0.0 0.0"/>
     </collision>
     <visual>
       <geometry>
-        <cylinder radius="0.1" length="1"/>
+        <cylinder radius="0.1" length="1.5"/>
       </geometry>
       <material name="orange"/>
-      <origin xyz="0.0 0.0 0.5" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0.0 0.0 0.75" rpy="0.0 0.0 0.0"/>
     </visual>
   </link>
 
@@ -130,12 +138,12 @@
 
 
   <!-- Elbow joint -->
-  <joint name="3elbow_joint" type="revolute">
-    <limit lower="-2.3562" upper="2.3562" effort="100" velocity="3.14"/>
+  <joint name="J3_elbow_joint" type="revolute">
+    <limit lower="-2.3562" upper="2.3562" effort="500" velocity="3.14"/>
     <parent link="upper_arm_link"/>
     <child link="forearm_link"/>
     <axis xyz="0 1 0"/>
-    <origin xyz="0.0 0.0 1" rpy="0.0 0.0 0.0"/>
+    <origin xyz="0.0 0.0 1.5" rpy="0.0 0.0 0.0"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
 
@@ -151,16 +159,16 @@
     </inertial>
     <collision>
       <geometry>
-        <cylinder radius="0.10" length="1"/>
+        <cylinder radius="0.10" length="1.5"/>
       </geometry>
-      <origin xyz="0.0 0.0 0.5" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0.0 0.0 0.75" rpy="0.0 0.0 0.0"/>
     </collision>
     <visual>
       <geometry>
-        <cylinder radius="0.10" length="1"/>
+        <cylinder radius="0.10" length="1.5"/>
       </geometry>
       <material name="orange"/>
-      <origin xyz="0.0 0.0 0.5" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0.0 0.0 0.75" rpy="0.0 0.0 0.0"/>
     </visual>
   </link>
 
@@ -174,12 +182,12 @@
 
 
   <!-- Wrist joint -->
-  <joint name="4wrist_joint" type="revolute">
-    <limit lower="-2.3562" upper="2.3562" effort="100" velocity="3.14"/>
+  <joint name="J4_wrist_joint" type="revolute">
+    <limit lower="-2.3562" upper="2.3562" effort="200" velocity="3.14"/>
     <parent link="forearm_link"/>
     <child link="wrist_link"/>
     <axis xyz="0 1 0"/>
-    <origin xyz="0.0 0.0 1" rpy="0.0 0.0 0.0"/>
+    <origin xyz="0.0 0.0 1.5" rpy="0.0 0.0 0.0"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
 
@@ -223,7 +231,7 @@
 
 
   <!-- Gripper base pan joint -->
-  <joint name="5gripper_pan_joint" type="revolute">
+  <joint name="J5_gripper_pan_joint" type="revolute">
     <limit lower="-3.14" upper="3.14" effort="100" velocity="3.14"/>
     <parent link="wrist_link"/>
     <child link="gripper_base_link"/>
@@ -231,11 +239,11 @@
     <origin xyz="0.0 0.0 0.2" rpy="0.0 0.0 0.0"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
-  
+  3
   <!-- Gripper base -->
   <link name="gripper_base_link">
     <inertial>
-      <mass value="2"/>
+      <mass value="0.03"/>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <inertia ixx="0.0317" ixy="0.0" ixz="0.0"
                iyy="0.0317" iyz="0.0"
@@ -270,8 +278,8 @@
 
 
    <!-- Left finger joint -->
-  <joint name="6left_finger_joint" type="prismatic">
-    <limit lower="0" upper="0.13" effort="100.0" velocity="4.0"/>
+  <joint name="J6_left_finger_joint" type="prismatic">
+    <limit lower="0" upper="0.13" effort="50.0" velocity="4.0"/>
     <parent link="gripper_base_link"/>
     <child link="left_finger"/>
     <axis xyz="0 1 0"/>
@@ -281,7 +289,7 @@
   <!-- Left finger link -->
   <link name="left_finger">
     <inertial>
-      <mass value="0.3"/>
+      <mass value="0.01"/>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <inertia ixx="0.0009" ixy="0.0" ixz="0.0"
                iyy="0.0009" iyz="0.0"
@@ -315,18 +323,18 @@
   </gazebo>
 
   <!-- Right finger joint -->
-  <joint name="7right_finger_joint" type="prismatic">
-    <limit lower="-0.13" upper="0" effort="100.0" velocity="4.0"/>
+  <joint name="J7_right_finger_joint" type="prismatic">
+    <limit lower="0" upper="0.13" effort="50.0" velocity="4.0"/>
     <parent link="gripper_base_link"/>
     <child link="right_finger"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 -1 0"/>
     <origin xyz="0.0 -0.01 0.1" />
   </joint>
 
   <!-- Right finger link -->
   <link name="right_finger">
     <inertial>
-      <mass value="0.3"/>
+      <mass value="0.01"/>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <inertia ixx="0.0009" ixy="0.0" ixz="0.0"
                iyy="0.0009" iyz="0.0"

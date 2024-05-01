@@ -10,7 +10,7 @@
   <!-- Inititalize it's position in the desired location inside the world -->
   <arg name="x" default="1.4"/>
   <arg name="y" default="0"/>
-  <arg name="z" default="0"/>
+  <arg name="z" default="0.1"/>
   <arg name="roll" default="0"/>
   <arg name="pitch" default="0"/>
   <arg name="yaw" default="0"/>
@@ -21,10 +21,17 @@
   <!-- Find robot description and send urdf to param server -->
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
 
-  <!-- Send joint values-->
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-    <param name="use_gui" value="false"/>
-  </node>
+
+  <!-- Joint_state_controller -->
+  <rosparam file="$(find ros_chess)/controller/joint_state_controller.yaml" command="load"/>
+  <node name="joint_state_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn joint_state_controller" respawn="false" output="screen"/>
+
+  <!-- Start this controller -->
+  <rosparam file="$(find ros_chess)/controller/arm_controller.yaml" command="load"/>
+  <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller" respawn="false" output="screen"/>
+
+
+
 
   <!-- Send robot states to tf -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>

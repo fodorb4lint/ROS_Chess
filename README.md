@@ -2,7 +2,7 @@
 # Project állapot
 - Környezet
 - Robot szimuláció 
-- Robot kézi vezérlő
+- Robot kézivezérlő
   
 
 # Futtatás

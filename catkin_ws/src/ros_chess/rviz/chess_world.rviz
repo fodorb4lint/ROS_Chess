@@ -68,6 +68,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        end_effector_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         forearm_link:
           Alpha: 1
           Show Axes: false
@@ -122,6 +127,8 @@ Visualization Manager:
         All Enabled: true
         base_link:
           Value: true
+        end_effector_link:
+          Value: true
         forearm_link:
           Value: true
         gripper_base_link:
@@ -152,6 +159,8 @@ Visualization Manager:
                 forearm_link:
                   wrist_link:
                     gripper_base_link:
+                      end_effector_link:
+                        {}
                       left_finger:
                         {}
                       right_finger:
